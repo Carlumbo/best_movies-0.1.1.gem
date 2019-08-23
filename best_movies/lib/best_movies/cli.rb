@@ -8,10 +8,8 @@ class BestMovies::CLI
   
   def list_movies
     puts "Top 25 movies"
-    @movies = BestMovies::Movie.alltime
-    # binding.pry
-    @titles, @rank , @synopsis , @actors, @urls = @movies[:titles] ,  @movies[:rank_spot], @movies[:synopsis] , @movies[:actors] , @movies[:urls]
-    # @rank = @movies[:rank_spot]
+    @movies = BestMovies::Scraper.alltime
+    binding.pry
     @titles.each.with_index(1) do |movie, i|
       puts "#{i}. #{movie}"
     end 
@@ -35,11 +33,11 @@ class BestMovies::CLI
       end 
     end 
   end 
+    # @rank = @movies[:rank_spot]
   
   def goodbye 
     puts "See you for your next showtime!"
   end 
   
 end 
-    
     
