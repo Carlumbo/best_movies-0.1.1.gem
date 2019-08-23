@@ -10,7 +10,7 @@ class BestMovies::CLI
     puts "Top 25 movies"
     @movies = BestMovies::Scraper.scrape_ranker
   
-     binding.pry
+    #  binding.pry
     @movies.each.with_index(1) do |movie, i|
        titles = movie.title
       puts "#{i}. #{titles}"
@@ -18,13 +18,16 @@ class BestMovies::CLI
   end 
 
   def menu 
-    # puts "enter the rak of the movie you would like the information of:"
    input = nil 
    while input != "exit"
      puts "\n Enter the rank of the movie you would like the information of or type list to see the movies again:"
      input = gets.strip.downcase
-     if input.to_i > 0
-       puts "#{@movies[input.to_i-1]}""
+     if input.to_i >= 26
+      puts "\nInvalid input, select rank between 1 - 25, type list for more options or exit"
+     elsif input.to_i > 0
+       puts "\n\n#{@movies[input.to_i-1].title}\n\n RELEASE YEAR: #{@movies[input.to_i-1].year}\nSTARRING: #{@movies[input.to_i-1].leading_actors} \n\nPLOT:#{@movies[input.to_i-1].descriptions}"
+     # if input.to_i >= 26
+     # puts "Invalid input, select rank between 1 - 25, type list for more options or exit"
      elsif input == "list"
         list_movies
      elsif input == "exit"
