@@ -8,11 +8,13 @@ class BestMovies::CLI
   
   def list_movies
     puts "Top 25 movies"
-    @movies = BestMovies::Scraper.alltime
-    binding.pry
-    @titles.each.with_index(1) do |movie, i|
-      puts "#{i}. #{movie}"
-    end 
+    @movies = BestMovies::Scraper.scrape_ranker
+  
+     binding.pry
+    @movies.each.with_index(1) do |movie, i|
+       titles = movie.title
+      puts "#{i}. #{titles}"
+    end
   end 
 
   def menu 
@@ -22,7 +24,7 @@ class BestMovies::CLI
      puts "\n Enter the rank of the movie you would like the information of or type list to see the movies again:"
      input = gets.strip.downcase
      if input.to_i > 0
-       puts "#{@titles[input.to_i-1]}\n Starring:#{@actors[input.to_i-1]} \n\n Plot:#{@synopsis[input.to_i-1]} info at #{@urls[input.to_i-1]}"
+       puts "#{@movies[input.to_i-1]}""
      elsif input == "list"
         list_movies
      elsif input == "exit"

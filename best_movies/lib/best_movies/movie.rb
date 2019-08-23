@@ -9,15 +9,11 @@ class BestMovies::Movie
     @leading_actors = leading_actors 
     @descriptions = descriptions 
     @year = year  
-    @@all << self 
-  end 
-  
-  def self.all 
-    @@all 
+    save
   end 
   def save
-    movie = Movie.new
-  binding.pry
+    @@all << self
+  end 
 
 end 
 
